@@ -39,9 +39,10 @@ total_number_of_tasks = str(len(todos_data))
 total_todos = len(todos_data)
 
 # Print the first line of the output
-print(
-    f'Employee {employee_name} is done with tasks({completed_tasks}/{total_todos}):')
+print(f'Employee {employee_name} is done with tasks'
+      f'({completed_tasks}/{total_todos}):')
 
+    
 # Print the title of each completed task
 for task in todos_data:
     if task['completed']:
