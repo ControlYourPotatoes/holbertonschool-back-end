@@ -24,7 +24,7 @@ employee_data = response.json()
 todos_data = todos.json()
 
 # Get the employee name
-employee_name = response['name']
+employee_name = employee_data['name']
 
 
 # Count the number of completed tasks
