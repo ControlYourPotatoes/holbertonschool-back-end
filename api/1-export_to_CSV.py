@@ -39,7 +39,7 @@ total_todos = len(todos_data)
 
 # Print the first line of the output
 print(
-    f'Employee {employee_name} is done with tasks({com}/{total_todos}):')
+    f'Employee {employee_name} is done with tasks({completed_tasks}/{total_todos}):')
 
 # Print the title of each completed task
 for task in todos_data:
