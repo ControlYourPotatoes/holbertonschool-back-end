@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """
-This script fetches data from a REST API for  employeeID, 
-prints the employee's TODO list progress,
+This script fetches data from a REST API for a given employee
+
+ID, prints the employee's TODO list progress,
 and exports the data to a CSV file.
 
 Usage: python3 1-export_to-CSV.py [employee_id]
-
 """
 import csv
 import requests
@@ -46,6 +46,7 @@ for task in todos_data:
 # Export using csv format
 with open('USER_ID.csv', 'w') as csvfile:
     # Ceating a csv writer object
+    # Quoting=csv.QUOTE_ALL to quote all the fields
     writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
     for task in todos_data:
         # Writing the fields to the csv file
