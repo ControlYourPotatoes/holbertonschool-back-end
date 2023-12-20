@@ -34,18 +34,22 @@ number_of_done_tasks = str(completed_tasks)
 # Calculate the total number of tasks
 total_number_of_tasks = str(len(todos_data))
 
-# Print the output
-print("Employee " + employee_name + " is done with tasks(" +
-      number_of_done_tasks + "/" + total_number_of_tasks + "):")
+# Get the total number of tasks
+total_todos = len(todos_data)
+
+# Print the first line of the output
+print(
+    f'Employee {employee_name} is done with tasks({completed_tasks}/{total_todos}):')
 
 # Print the title of each completed task
 for task in todos_data:
     if task['completed']:
         print('\t ' + task['title'])
 
-# Export data to CSV
+# Export using csv format
 with open('USER_ID.csv', 'w') as csvfile:
     # Ceating a csv writer object
+    # Quoting=csv.QUOTE_ALL to quote all the fields
     writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
     for task in todos_data:
         # Writing the fields to the csv file
