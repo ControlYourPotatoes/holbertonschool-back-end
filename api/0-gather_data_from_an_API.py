@@ -10,8 +10,11 @@ if len(sys.argv) != 2:
 employee_id = sys.argv[1]
 
 # Make a GET request to the API
-response = requests.get(f"https://jsonplaceholder.typicode.com/users/{employee_id}")
-todos = requests.get(f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}")
+response = requests.get(
+    'https://jsonplaceholder.typicode.com/users/' + employee_id)
+
+todos = requests.get(
+    'https://jsonplaceholder.typicode.com/todos?userId=' + employee_id)
 
 if response.status_code != 200 or todos.status_code != 200:
     print("Error: Failed to fetch data from the API")
@@ -35,3 +38,11 @@ print(f"Employee {employee_name} is done with tasks({number_of_done_tasks}/{tota
 for task in completed_tasks:
     task_title = task.get("title")
     print(f"\t{task_title}")
+
+# Print the title of each completed task
+for task in todos_data:
+    if task['completed']:
+        print('\t ' + task['title'])
+
+if __name__ == '__main__':
+    pass
