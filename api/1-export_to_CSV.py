@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """Gather data from an API"""
+import csv
 import requests
 import sys
-import csv
+
 if len(sys.argv) != 2:
     print("Usage: python script.py <employee_id>")
     sys.exit(1)
