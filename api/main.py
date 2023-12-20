@@ -10,22 +10,26 @@ users_url = "https://jsonplaceholder.typicode.com/users"
 todos_url = "https://jsonplaceholder.typicode.com/todos"
 
 
-def check_tasks(id):
-    """ Fetch user name, number of tasks """
+def first_line(id):
+    """ Fetch user name """
 
-    resp = requests.get(todos_url).json()
+    resp = requests.get(users_url).json()
+
+    name = None
+    for i in resp:
+        if i['id'] == id:
+            name = i['name']
 
     filename = 'student_output'
-    count = 0
+
     with open(filename, 'r') as f:
-        next(f)
-        for line in f:
-            count += 1
-            if line[0] is '\t' and line[1] is ' ' and line[-1] is '\n':
-                print("Task {} Formatting: OK".format(count))
-            else:
-                print("Task {} Formatting: Incorrect".format(count))
+        first = f.readline().strip()
+
+    if name in first:
+        print("Employee Name: OK")
+    else:
+        print("Employee Name: Incorrect")
 
 
 if __name__ == "__main__":
-    check_tasks(int(sys.argv[1]))
+    first_line(int(sys.argv[1]))

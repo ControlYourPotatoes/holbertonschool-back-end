@@ -24,15 +24,14 @@ employee_data = response.json()
 todos_data = todos.json()
 
 # Get the employee name
-employee_name = employee_data['name']
-
+employee_name = employee_data.get("name")
 
 # Count the number of completed tasks
-completed_tasks = [todo for todo in todos_data if todo.get("completed")]
+completed_tasks = str(sum(1 for task in todos_data if task['completed']))
 number_of_done_tasks = len(completed_tasks)
 
 # Calculate the total number of tasks
-total_number_of_tasks = len(todos_data)
+total_number_of_tasks = str(len(todos_data))
 
 # Print the output
 print("Employee " + employee_name + " is done with tasks(" +
