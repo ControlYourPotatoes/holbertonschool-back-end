@@ -44,15 +44,13 @@ for task in todos_data:
         print('\t ' + task['title'])
 
 # Export data to CSV
-filename = employee_id + ".csv"
-with open(filename, mode='w', newline='') as file:
-    writer = csv.writer(file)
-    writer.writerow(
-        ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+with open('USER_ID.csv', 'w') as csvfile:
+    # Ceating a csv writer object
+    writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
     for task in todos_data:
-        writer.writerow(
-            [employee_id, employee_name, task['completed'], task['title']])
-
+        # Writing the fields to the csv file
+        writer.writerow([employee_id, employee_name, task['completed'],
+                         task['title']])
 
 if __name__ == '__main__':
     pass
