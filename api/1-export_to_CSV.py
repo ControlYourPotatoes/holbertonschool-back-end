@@ -46,9 +46,11 @@ for task in todos_data:
 filename = employee_id + ".csv"
 with open(filename, mode='w', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+    writer.writerow(
+        ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
     for task in todos_data:
-        writer.writerow([employee_id, employee_name, task['completed'], task['title']])
+        writer.writerow(
+            [employee_id, employee_name, task['completed'], task['title']])
 
 
 if __name__ == '__main__':
