@@ -1,45 +1,45 @@
 #!/usr/bin/python3
-"""
-This script fetches data from a REST API for a given employee
-
-ID, prints the employee's TODO list progress,
-and exports the data to a CSV file.
-
-Usage: python3 1-export_to-CSV.py [employee_id]
-
-The CSV file will have the following format: "USER_ID",
-"USERNAME","TASK_COMPLETED_STATUS","TASK_TITLE"
-"""
+"""Gather data from an API"""
 import csv
 import requests
 import sys
 
+if len(sys.argv) != 2:
+    print("Usage: python script.py <employee_id>")
+    sys.exit(1)
 
-# Get the employee id
 employee_id = sys.argv[1]
-# Set the url and get a respnse
-user_response = requests.get(
-    f'https://jsonplaceholder.typicode.com/users/{employee_id}')
-# Get data in json form
 
-data = user_response.json()
-# Get the name of the employee
-employee_name = data['name']
+# Make a GET request to the API
+response = requests.get(
+    'https://jsonplaceholder.typicode.com/users/' + employee_id)
 
-# Get the todo data fro the API
-todos_response = requests.get(
-    f'https://jsonplaceholder.typicode.com/todos?userId={employee_id}')
-# Get the data in json form
-todos_data = todos_response.json()
+todos = requests.get(
+    'https://jsonplaceholder.typicode.com/todos?userId=' + employee_id)
+
+if response.status_code != 200 or todos.status_code != 200:
+    print("Error: Failed to fetch data from the API")
+    sys.exit(1)
+
+employee_data = response.json()
+todos_data = todos.json()
+
+# Get the employee name
+employee_name = employee_data.get("name")
+
+# Count the number of completed tasks
+completed_tasks = sum(1 for task in todos_data if task['completed'])
+number_of_done_tasks = str(completed_tasks)
+
+# Calculate the total number of tasks
+total_number_of_tasks = str(len(todos_data))
 
 # Get the total number of tasks
 total_todos = len(todos_data)
-# Get the number of completed tasks
-ok_todos = sum(1 for task in todos_data if task['completed'])
 
 # Print the first line of the output
 print(
-    f'Employee {employee_name} is done with tasks({ok_todos}/{total_todos}):')
+    f'Employee {employee_name} is done with tasks({com}/{total_todos}):')
 
 # Print the title of each completed task
 for task in todos_data:
