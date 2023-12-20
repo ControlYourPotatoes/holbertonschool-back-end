@@ -3,6 +3,7 @@
 import json
 import requests
 
+
 def fetch_data():
     users_url = "https://jsonplaceholder.typicode.com/users"
     todos_url = "https://jsonplaceholder.typicode.com/todos"
