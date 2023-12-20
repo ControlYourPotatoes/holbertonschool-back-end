@@ -26,6 +26,7 @@ todos_data = todos.json()
 
 # Get the employee name
 employee_name = employee_data.get("name")
+employee_username = employee_data.get("username")
 
 # Count the number of completed tasks
 completed_tasks = sum(1 for task in todos_data if task['completed'])
@@ -46,15 +47,12 @@ for task in todos_data:
     if task['completed']:
         print('\t ' + task['title'])
 
-# Export using csv format
-with open(f'{employee_id}.csv', 'w') as csvfile:
-    # Ceating a csv writer object
-    # Quoting=csv.QUOTE_ALL to quote all the fields
+# Export data to CSV format
+with open(f'{employee_id}.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
     for task in todos_data:
-        # Writing the fields to the csv file
-        writer.writerow([employee_id, employee_name, task['completed'],
-                         task['title']])
+        writer.writerow([employee_id, employee_username,
+                        task['completed'], task['title']])
 
 if __name__ == '__main__':
     pass
