@@ -34,10 +34,8 @@ number_of_done_tasks = len(completed_tasks)
 total_number_of_tasks = len(todos_data)
 
 # Print the output
-print(f"Employee {employee_name} is done with tasks({number_of_done_tasks}/{total_number_of_tasks}):")
-for task in completed_tasks:
-    task_title = task.get("title")
-    print(f"\t{task_title}")
+print("Employee " + employee_name + " is done with tasks(" +
+      completed_tasks + "/" + total_number_of_tasks + "):")
 
 # Print the title of each completed task
 for task in todos_data:
