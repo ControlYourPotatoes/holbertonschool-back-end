@@ -6,6 +6,9 @@ ID, prints the employee's TODO list progress,
 and exports the data to a CSV file.
 
 Usage: python3 1-export_to-CSV.py [employee_id]
+
+The CSV file will have the following format: "USER_ID",
+"USERNAME","TASK_COMPLETED_STATUS","TASK_TITLE"
 """
 import csv
 import requests
